@@ -1,0 +1,467 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Say. V 西 — Coffee by Day, Cocktails by Night · Ipoh</title>
+<meta name="description" content="Say. V 西 — a small Ipoh house pouring coffee in the morning and character-led cocktails after dark. Plum, tea, lychee, blossom, smokey yuzu.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@400;500;600&family=Noto+Serif+TC:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#15110e;
+    --ink-2:#221c17;
+    --paper:#efe7da;
+    --paper-2:#e6dccb;
+    --rule:#cbbfab;
+    --muted:#6b6056;
+    --muted-dark:#a89b8b;
+    --seal:#b83a22;      /* chop-seal vermilion */
+    --seal-ink:#fff6ec;
+    --plum:#5a2a35;
+    --gold:#c9a36a;
+    --serif:"Instrument Serif", "Times New Roman", serif;
+    --sans:"Inter Tight", system-ui, sans-serif;
+    --han:"Noto Serif TC", "Songti TC", serif;
+    --gut:clamp(16px, 4vw, 56px);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  a{color:inherit}
+  img,svg{display:block}
+  :focus-visible{outline:2px solid var(--seal);outline-offset:3px}
+  ::selection{background:var(--seal);color:var(--seal-ink)}
+
+  /* paper grain */
+  body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:100;opacity:.22;mix-blend-mode:multiply;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .3 0 0 0 0 .25 0 0 0 0 .2 0 0 0 .55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+
+  .eyebrow{font-family:var(--sans);font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;font-weight:500}
+  .serif{font-family:var(--serif);font-weight:400}
+  .it{font-style:italic}
+
+  /* ───────── nav ───────── */
+  .nav{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;justify-content:space-between;align-items:center;padding:18px var(--gut);mix-blend-mode:difference;color:#efe7da}
+  .nav .mark{font-family:var(--serif);font-size:1.5rem;text-decoration:none;letter-spacing:.01em}
+  .nav .mark span{font-family:var(--han);font-size:1.1rem;margin-left:.25em}
+  .nav ul{display:flex;gap:28px;list-style:none}
+  .nav ul a{text-decoration:none;font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;padding:12px 0;display:inline-block}
+  .nav ul a:hover{text-decoration:underline;text-underline-offset:5px}
+  .nav ul{align-items:center}
+  .nav ul a.nav-cta{border:1px solid currentColor;border-radius:999px;padding:0 18px;min-height:44px;display:inline-flex;align-items:center}
+  .nav ul a.nav-cta:hover{text-decoration:none;background:#efe7da;color:#15110e}
+  @media (max-width:720px){.nav ul{gap:18px}.nav ul li:nth-child(-n+2){display:none}}
+
+  /* ───────── hero ───────── */
+  .hero{position:relative;min-height:100svh;background:var(--ink);color:var(--paper);padding:110px var(--gut) 40px;display:grid;grid-template-columns:repeat(12,1fr);grid-template-rows:auto 1fr auto;gap:0 20px;overflow:hidden}
+  .hero .folio{grid-column:1/-1;display:flex;justify-content:space-between;border-top:1px solid #3a322b;padding-top:12px;color:var(--muted-dark)}
+  .hero h1{grid-column:1/11;align-self:center;font-family:var(--serif);font-weight:400;font-size:clamp(3.6rem,13.5vw,13rem);line-height:.84;letter-spacing:-.02em;margin-top:6vh;position:relative;z-index:2}
+  .hero h1 .l2{display:block;padding-left:12vw;font-style:italic;color:var(--gold)}
+  .hero h1 .l3{display:block;padding-left:3vw}
+  .hero .han{position:absolute;right:-3vw;top:6vh;font-family:var(--han);font-weight:700;font-size:clamp(18rem,52vw,46rem);line-height:.8;color:transparent;-webkit-text-stroke:1px #4a3f35;z-index:1;user-select:none;pointer-events:none}
+  .hero .aside{grid-column:9/13;align-self:end;justify-self:end;max-width:300px;position:relative;z-index:2;margin-bottom:28px}
+  .hero .aside p{font-size:.98rem;color:#d7ccbc}
+  .hero .aside .note{font-family:var(--serif);font-style:italic;font-size:1.25rem;color:var(--paper);margin-bottom:10px;line-height:1.2}
+  .hero .base{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:14px 28px;align-items:center;position:relative;z-index:2;border-top:1px solid #3a322b;padding-top:18px}
+  .hero .base .loc{color:var(--muted-dark);margin-left:auto}
+
+  .btn{display:inline-flex;align-items:center;gap:12px;min-height:48px;padding:0 22px;border-radius:999px;font-family:var(--sans);font-size:.85rem;font-weight:500;letter-spacing:.06em;text-decoration:none;transition:background .25s ease,color .25s ease,transform .25s ease;cursor:pointer}
+  .btn svg{width:18px;height:18px;flex:none}
+  .btn-seal{background:var(--seal);color:var(--seal-ink)}
+  .btn-seal:hover{background:#d14529;transform:translateY(-2px)}
+  .btn-line{border:1px solid currentColor}
+  .btn-line:hover{background:var(--paper);color:var(--ink)}
+  .link-u{font-size:.85rem;letter-spacing:.06em;text-decoration:none;border-bottom:1px solid currentColor;padding:12px 0 2px}
+
+  /* rotating stamp */
+  .stamp{position:absolute;z-index:3;width:132px;height:132px;left:58%;top:58%;color:var(--seal)}
+  .stamp svg{width:100%;height:100%;animation:spin 28s linear infinite}
+  .stamp .core{position:absolute;inset:0;display:grid;place-items:center;font-family:var(--han);font-size:2.4rem;color:var(--seal);font-weight:700}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  @media (max-width:900px){
+    .hero h1{grid-column:1/-1}
+    .hero .aside{grid-column:1/-1;justify-self:start;margin-top:30px}
+    .stamp{left:auto;right:var(--gut);top:160px;width:96px;height:96px}
+    .stamp .core{font-size:1.7rem}
+    .hero .base .loc{margin-left:0;width:100%}
+  }
+
+  /* ───────── ticker ───────── */
+  .ticker{background:var(--seal);color:var(--seal-ink);overflow:hidden;white-space:nowrap;border-block:1px solid var(--ink);transform:rotate(-1.2deg);margin:-14px -10px 0;position:relative;z-index:5}
+  .ticker div{display:inline-block;padding:14px 0;animation:tick 40s linear infinite;font-family:var(--serif);font-size:1.55rem}
+  .ticker span{margin:0 26px}
+  .ticker .h{font-family:var(--han);font-size:1.1rem;opacity:.85}
+  @keyframes tick{to{transform:translateX(-50%)}}
+
+  /* ───────── manifesto ───────── */
+  section{position:relative}
+  .manifesto{padding:clamp(90px,14vw,180px) var(--gut) clamp(70px,10vw,140px);display:grid;grid-template-columns:repeat(12,1fr);gap:20px}
+  .manifesto .num{grid-column:1/3;font-family:var(--serif);font-size:1rem;color:var(--muted)}
+  .manifesto .num b{display:block;font-weight:400;font-size:4.5rem;line-height:1;color:var(--seal)}
+  .manifesto h2{grid-column:3/12;font-family:var(--serif);font-weight:400;font-size:clamp(2.1rem,5.2vw,4.8rem);line-height:1.04;letter-spacing:-.01em}
+  .manifesto h2 em{color:var(--plum)}
+  .manifesto h2 .scribble{position:relative;white-space:nowrap}
+  .manifesto h2 .scribble svg{position:absolute;left:-4%;bottom:-.12em;width:108%;height:.42em;overflow:visible}
+  .manifesto h2 .scribble path{stroke:var(--seal);stroke-width:3;fill:none;stroke-linecap:round;stroke-dasharray:520;stroke-dashoffset:520;transition:stroke-dashoffset 1.6s cubic-bezier(.6,.1,.2,1) .3s}
+  .manifesto.in h2 .scribble path{stroke-dashoffset:0}
+  .manifesto .cols{grid-column:6/12;display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:56px;color:#3d342c}
+  .manifesto .cols p:first-child::first-letter{font-family:var(--serif);font-size:3.6em;float:left;line-height:.8;margin:.06em .08em 0 0;color:var(--seal)}
+  @media (max-width:900px){
+    .manifesto .num{grid-column:1/-1}
+    .manifesto h2,.manifesto .cols{grid-column:1/-1}
+    .manifesto .cols{grid-template-columns:1fr}
+  }
+
+  /* ───────── day / night ───────── */
+  .split{display:grid;grid-template-columns:5fr 7fr;min-height:88vh}
+  .split .day{background:var(--paper-2);padding:clamp(48px,7vw,96px) var(--gut);display:flex;flex-direction:column;justify-content:space-between;gap:40px;border-top:1px solid var(--rule)}
+  .split .night{background:var(--plum);color:var(--paper);padding:clamp(48px,7vw,96px) var(--gut);display:flex;flex-direction:column;justify-content:space-between;gap:40px;position:relative;overflow:hidden}
+  .split h3{font-family:var(--serif);font-weight:400;font-size:clamp(2.6rem,6vw,5.6rem);line-height:.9}
+  .split h3 em{display:block;padding-left:1.2em}
+  .split .day p,.split .night p{max-width:34ch}
+  .split .night p{color:#e3cfd1}
+  .split .glyph{width:84px;height:84px}
+  .split .night .moonline{position:absolute;right:-120px;bottom:-120px;width:460px;height:460px;border-radius:50%;border:1px solid #7d4a55}
+  .split .night .moonline::after{content:"";position:absolute;inset:40px;border-radius:50%;border:1px dashed #7d4a55}
+  .split .tag{display:flex;justify-content:space-between;align-items:baseline;border-top:1px solid currentColor;padding-top:12px;opacity:.85}
+  @media (max-width:860px){.split{grid-template-columns:1fr}.split .day,.split .night{min-height:70vh}}
+
+  /* ───────── signatures ───────── */
+  .sig{background:var(--ink);color:var(--paper);padding:clamp(80px,12vw,160px) var(--gut)}
+  .sig header{display:grid;grid-template-columns:repeat(12,1fr);gap:20px;align-items:end;margin-bottom:64px}
+  .sig header h2{grid-column:1/8;font-family:var(--serif);font-weight:400;font-size:clamp(2.8rem,7.4vw,7rem);line-height:.88;letter-spacing:-.015em}
+  .sig header h2 em{color:var(--gold)}
+  .sig header p{grid-column:9/13;color:var(--muted-dark);max-width:34ch}
+  @media (max-width:860px){.sig header h2,.sig header p{grid-column:1/-1}}
+
+  .drinks{list-style:none;border-top:1px solid #3a322b}
+  .drink{display:grid;grid-template-columns:60px 1fr auto;align-items:center;gap:20px;padding:22px 0;border-bottom:1px solid #3a322b;position:relative;transition:padding .35s ease, background .35s ease}
+  .drink .idx{font-family:var(--serif);font-style:italic;color:var(--muted-dark);font-size:1.05rem}
+  .drink .name{display:flex;align-items:baseline;gap:22px;flex-wrap:wrap}
+  .drink .name b{font-family:var(--serif);font-weight:400;font-size:clamp(1.9rem,4.6vw,3.8rem);line-height:1}
+  .drink .name .ch{font-family:var(--han);font-size:clamp(1.2rem,2.4vw,1.9rem);color:var(--seal);transition:transform .45s cubic-bezier(.3,1.4,.5,1)}
+  .drink .price{font-family:var(--serif);font-size:1.35rem;color:var(--gold);white-space:nowrap}
+  .drink .ghost{position:absolute;right:16%;top:50%;transform:translateY(-50%) scale(.6) rotate(-8deg);font-family:var(--han);font-weight:700;font-size:9rem;line-height:1;color:var(--seal);opacity:0;pointer-events:none;transition:opacity .4s ease, transform .5s cubic-bezier(.3,1.3,.5,1);mix-blend-mode:screen}
+  @media (hover:hover){
+    .drink:hover{padding-left:14px}
+    .drink:hover .ghost{opacity:.22;transform:translateY(-50%) scale(1) rotate(-8deg)}
+    .drink:hover .ch{transform:translateY(-6px) rotate(-6deg)}
+  }
+  .drink:nth-child(4) .name b,.drink:nth-child(8) .name b{font-style:italic}
+  .sig .foot{display:flex;flex-wrap:wrap;gap:20px;justify-content:space-between;align-items:center;margin-top:36px;color:var(--muted-dark)}
+  .sig .foot .handnote{font-family:var(--serif);font-style:italic;font-size:1.3rem;color:var(--paper);transform:rotate(-2deg)}
+  @media (max-width:600px){.drink{grid-template-columns:34px 1fr auto;gap:12px}.drink .name{gap:10px}}
+
+  /* ───────── full menu ───────── */
+  .menu{padding:clamp(80px,12vw,160px) var(--gut)}
+  .menu .head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:end;gap:24px;border-bottom:2px solid var(--ink);padding-bottom:20px;margin-bottom:12px}
+  .menu .head h2{font-family:var(--serif);font-weight:400;font-size:clamp(3rem,9vw,8.5rem);line-height:.82;letter-spacing:-.02em}
+  .menu .head h2 em{color:var(--seal)}
+  .menu .head .meta{text-align:right;color:var(--muted)}
+  .menu .head .meta .serif{font-size:1.4rem;color:var(--ink)}
+
+  .tabs{display:flex;flex-wrap:wrap;gap:4px 6px;margin:26px 0 46px}
+  .tab{appearance:none;background:none;border:1px solid transparent;font-family:var(--sans);font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;padding:0 16px;min-height:44px;border-radius:999px;color:var(--muted);cursor:pointer;transition:color .2s, border-color .2s, background .2s}
+  .tab:hover{color:var(--ink);border-color:var(--rule)}
+  .tab[aria-selected="true"]{background:var(--ink);color:var(--paper)}
+
+  .board{columns:2 420px;column-gap:72px;column-rule:1px solid var(--rule)}
+  .cat{break-inside:avoid;margin-bottom:56px}
+  .cat h4{display:flex;align-items:baseline;gap:14px;font-family:var(--serif);font-weight:400;font-size:2.1rem;line-height:1;margin-bottom:18px}
+  .cat h4 small{font-family:var(--sans);font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--seal)}
+  .cat h4 .aside{margin-left:auto;font-family:var(--serif);font-style:italic;font-size:1rem;color:var(--muted)}
+  .item{display:flex;align-items:baseline;gap:10px;padding:9px 0}
+  .item .n{font-weight:500}
+  .item .n .ch{font-family:var(--han);color:var(--seal);font-weight:400;margin-left:6px}
+  .item .dots{flex:1;border-bottom:1px dotted #a99c8a;transform:translateY(-4px);min-width:20px}
+  .item .p{font-family:var(--serif);font-size:1.15rem;white-space:nowrap}
+  .item + .d{margin:-6px 0 6px;font-size:.88rem;color:var(--muted);font-style:italic;max-width:42ch}
+  .cat.hide{display:none}
+  .menu .note{margin-top:8px;font-size:.85rem;color:var(--muted)}
+
+  /* ───────── visit ───────── */
+  .visit{background:var(--seal);color:var(--seal-ink);padding:clamp(80px,12vw,150px) var(--gut) 0;overflow:hidden}
+  .visit .grid{position:relative;z-index:1;display:grid;grid-template-columns:repeat(12,1fr);gap:20px}
+  .visit h2{grid-column:1/9;font-family:var(--serif);font-weight:400;font-size:clamp(3rem,9vw,8.8rem);line-height:.86;letter-spacing:-.02em}
+  .visit h2 em{display:block;padding-left:8vw}
+  .visit .card{grid-column:9/13;align-self:end;border-top:1px solid #ffffff66;padding-top:18px}
+  .visit .card dl{display:grid;grid-template-columns:auto 1fr;gap:12px 22px;font-size:.95rem}
+  .visit .card dt{opacity:.75}
+  .visit .card dd a{text-decoration:none;border-bottom:1px solid #ffffff88}
+  .visit .card dd a:hover{border-color:#fff}
+  .visit .card .dim{opacity:.7;font-family:var(--serif);font-style:italic;font-size:1.05em}
+  .status{display:inline-flex;align-items:center;gap:8px}
+  .status::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--muted-dark)}
+  .status.open::before{background:#7fd08a;box-shadow:0 0 0 4px #7fd08a33}
+  .visit .ctas{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:12px;margin-top:56px}
+  .visit .btn-ink{background:var(--ink);color:var(--paper)}
+  .visit .btn-ink:hover{background:#000;transform:translateY(-2px)}
+  .visit .btn-line:hover{background:var(--seal-ink);color:var(--seal)}
+  .visit .bigmark{font-family:var(--serif);font-size:clamp(7rem,30vw,28rem);line-height:.72;letter-spacing:-.04em;white-space:nowrap;margin-top:70px;margin-left:-.04em;color:#9e2f1a;user-select:none;pointer-events:none;position:relative;z-index:0}
+  .visit .bigmark span{font-family:var(--han);font-size:.62em;vertical-align:.12em;margin-left:.08em}
+  @media (max-width:900px){.visit h2,.visit .card{grid-column:1/-1}}
+
+  footer{background:var(--ink);color:var(--muted-dark);padding:26px var(--gut);display:flex;flex-wrap:wrap;gap:12px 24px;justify-content:space-between;font-size:.8rem}
+  footer a{text-decoration:none}
+  footer a:hover{color:var(--paper)}
+
+  /* floating WhatsApp */
+  .wa-float{position:fixed;right:18px;bottom:18px;z-index:60;width:56px;height:56px;border-radius:50%;background:var(--seal);color:#fff;border:2px solid var(--paper);display:grid;place-items:center;box-shadow:0 10px 30px -10px #0008;transition:transform .25s ease}
+  .wa-float:hover{transform:scale(1.07) rotate(-6deg)}
+  .wa-float svg{width:26px;height:26px}
+
+  /* reveal */
+  .js .rv{opacity:0;transform:translateY(26px);transition:opacity .9s ease, transform .9s cubic-bezier(.2,.7,.2,1)}
+  .js .rv.in{opacity:1;transform:none}
+  @media (prefers-reduced-motion:reduce){
+    *,*::before,*::after{animation:none!important;transition:none!important}
+    .js .rv{opacity:1;transform:none}
+    .manifesto h2 .scribble path{stroke-dashoffset:0}
+  }
+</style>
+<script>document.documentElement.classList.add("js")</script>
+</head>
+<body>
+
+<nav class="nav" aria-label="Primary">
+  <a class="mark" href="#top">Say. V<span>西</span></a>
+  <ul>
+    <li><a href="#signatures">Signatures</a></li>
+    <li><a href="#menu">Menu</a></li>
+    <li><a href="#visit">Visit</a></li>
+    <li><a class="nav-cta" href="https://wa.me/60162541262?text=Hi%20Say.%20V!%20" target="_blank" rel="noopener">Contact us</a></li>
+  </ul>
+</nav>
+
+<!-- ───────── HERO ───────── -->
+<header class="hero" id="top">
+  <div class="folio eyebrow"><span>Ipoh, Perak</span><span>Nº 01 — House Notes</span></div>
+
+  <h1>
+    Say it
+    <span class="l2">slowly,</span>
+    <span class="l3">pour it well.</span>
+  </h1>
+
+  <div class="han" aria-hidden="true">西</div>
+
+  <div class="stamp" aria-hidden="true">
+    <svg viewBox="0 0 120 120">
+      <defs><path id="circ" d="M60,60 m-48,0 a48,48 0 1,1 96,0 a48,48 0 1,1 -96,0"/></defs>
+      <text font-family="Inter Tight" font-size="9.4" letter-spacing="3.2" fill="currentColor">
+        <textPath href="#circ">COFFEE BY DAY · COCKTAILS BY NIGHT · </textPath>
+      </text>
+    </svg>
+    <div class="core">西</div>
+  </div>
+
+  <div class="aside">
+    <p class="note">— a small house of plum, tea &amp; smoke.</p>
+    <p>Morning flat whites and sourdough. After dusk, a short list of cocktails, each named for a single character.</p>
+  </div>
+
+  <div class="base">
+    <a class="btn btn-seal" href="https://wa.me/60162541262?text=Hi%20Say.%20V!%20I%27d%20like%20to%20reserve%20a%20table." target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21c5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2Zm5.8 14.13c-.24.69-1.42 1.32-1.96 1.37-.5.05-1.13.07-1.82-.11-.42-.13-.96-.31-1.65-.61-2.9-1.25-4.79-4.17-4.94-4.36-.14-.19-1.18-1.57-1.18-3s.75-2.13 1.02-2.42c.27-.29.58-.36.78-.36h.56c.18 0 .42-.07.66.5.24.58.82 2 .89 2.15.07.14.12.31.02.5-.1.19-.14.31-.29.48-.14.17-.3.38-.43.51-.14.14-.29.3-.13.59.17.29.74 1.22 1.59 1.98 1.09.97 2.01 1.27 2.3 1.42.29.14.46.12.63-.07.17-.19.72-.84.92-1.13.19-.29.38-.24.65-.14.27.1 1.69.8 1.98.94.29.14.48.22.55.34.07.12.07.69-.17 1.37Z"/></svg>
+      Reserve on WhatsApp
+    </a>
+    <a class="link-u" href="#menu">Read the menu ↓</a>
+    <span class="loc eyebrow"><span class="status" data-status>Thu – Mon · 8:30am – 1pm &amp; 6pm – 1am</span></span>
+  </div>
+</header>
+
+<div class="ticker" aria-hidden="true">
+  <div>
+    <span>Fruits <i class="h">果</i></span><span>✶</span><span class="it">Plum <i class="h">梅</i></span><span>✶</span><span>Tea <i class="h">茶</i></span><span>✶</span><span class="it">Blossom <i class="h">花</i></span><span>✶</span><span>Lychee <i class="h">荔</i></span><span>✶</span><span class="it">Smokey Yuzu</span><span>✶</span><span>Homemade Rice Wine</span><span>✶</span><span class="it">Coconut Affogato</span><span>✶</span>
+    <span>Fruits <i class="h">果</i></span><span>✶</span><span class="it">Plum <i class="h">梅</i></span><span>✶</span><span>Tea <i class="h">茶</i></span><span>✶</span><span class="it">Blossom <i class="h">花</i></span><span>✶</span><span>Lychee <i class="h">荔</i></span><span>✶</span><span class="it">Smokey Yuzu</span><span>✶</span><span>Homemade Rice Wine</span><span>✶</span><span class="it">Coconut Affogato</span><span>✶</span>
+  </div>
+</div>
+
+<!-- ───────── MANIFESTO ───────── -->
+<section class="manifesto rv" id="about">
+  <div class="num"><b>i.</b>The house</div>
+  <h2>
+    One room, two moods. Coffee while the town wakes up,
+    <em class="it">then</em> the lights go low and the
+    <span class="scribble">glasses come out.
+      <svg viewBox="0 0 300 30" preserveAspectRatio="none" aria-hidden="true"><path d="M3 18 C 60 6, 120 26, 180 14 S 280 10, 297 20"/></svg>
+    </span>
+  </h2>
+  <div class="cols">
+    <p>Say. V is an easy, unhurried place. Mornings are for Vietnam coffee, butter-kaya sourdough and the kind of breakfast your auntie would approve of.</p>
+    <p>Come evening, the bar takes over. Our signatures are built on familiar Asian flavours — sour plum, tea, lychee, star fruit — mixed with a light hand and served without fuss.</p>
+  </div>
+</section>
+
+<!-- ───────── DAY / NIGHT ───────── -->
+<section class="split" aria-label="Day and night">
+  <div class="day rv">
+    <svg class="glyph" viewBox="0 0 84 84" fill="none" stroke="#15110e" stroke-width="1.3" aria-hidden="true">
+      <circle cx="42" cy="42" r="16"/>
+      <path d="M42 8v12M42 64v12M8 42h12M64 42h12M18 18l8 8M58 58l8 8M66 18l-8 8M26 58l-8 8" stroke-linecap="round"/>
+    </svg>
+    <div>
+      <p class="eyebrow" style="color:var(--seal);margin-bottom:14px">Before dusk</p>
+      <h3>Black,<em class="it">white &amp; kaya.</em></h3>
+    </div>
+    <p>Cinnamon coffee, coconut coffee, a Sicilian with orange. Matcha by the slow pour. Focaccia, Ah Mo breakfast, nasi lemak for five ringgit.</p>
+    <div class="tag eyebrow"><span>8:30am – 1pm</span><span>from RM 5</span></div>
+  </div>
+  <div class="night rv">
+    <div class="moonline" aria-hidden="true"></div>
+    <svg class="glyph" viewBox="0 0 84 84" fill="none" stroke="#efe7da" stroke-width="1.3" aria-hidden="true">
+      <path d="M22 18h40l-20 26z"/><path d="M42 44v24M30 68h24" stroke-linecap="round"/><circle cx="54" cy="24" r="4"/>
+    </svg>
+    <div>
+      <p class="eyebrow" style="color:var(--gold);margin-bottom:14px">After dusk</p>
+      <h3>Plum, smoke<em class="it">&amp; a little rice wine.</em></h3>
+    </div>
+    <p>Eight signatures, house-made rice wine, a tomato beer that shouldn't work but does. Mala wings and butter garlic clams to keep you company.</p>
+    <div class="tag eyebrow"><span>6pm – 1am</span><span>from RM 23</span></div>
+  </div>
+</section>
+
+<!-- ───────── SIGNATURES ───────── -->
+<section class="sig" id="signatures">
+  <header class="rv">
+    <h2>Eight drinks,<br><em class="it">eight characters.</em></h2>
+    <p>Each signature is named for the one ingredient it's built around. Order by the word, or just point at the character you like the look of.</p>
+  </header>
+  <ol class="drinks">
+    <li class="drink rv"><span class="idx">01</span><span class="name"><b>Fruits</b><span class="ch">果</span></span><span class="price">RM 25</span><span class="ghost" aria-hidden="true">果</span></li>
+    <li class="drink rv"><span class="idx">02</span><span class="name"><b>Plum</b><span class="ch">梅</span></span><span class="price">RM 25</span><span class="ghost" aria-hidden="true">梅</span></li>
+    <li class="drink rv"><span class="idx">03</span><span class="name"><b>Tea</b><span class="ch">茶</span></span><span class="price">RM 28</span><span class="ghost" aria-hidden="true">茶</span></li>
+    <li class="drink rv"><span class="idx">04</span><span class="name"><b>Blossom</b><span class="ch">花</span></span><span class="price">RM 25</span><span class="ghost" aria-hidden="true">花</span></li>
+    <li class="drink rv"><span class="idx">05</span><span class="name"><b>Lychee</b><span class="ch">荔</span></span><span class="price">RM 25</span><span class="ghost" aria-hidden="true">荔</span></li>
+    <li class="drink rv"><span class="idx">06</span><span class="name"><b>Star Fruit</b><span class="ch">桃</span></span><span class="price">RM 30</span><span class="ghost" aria-hidden="true">桃</span></li>
+    <li class="drink rv"><span class="idx">07</span><span class="name"><b>Nutmeg</b><span class="ch">葱</span></span><span class="price">RM 25</span><span class="ghost" aria-hidden="true">葱</span></li>
+    <li class="drink rv"><span class="idx">08</span><span class="name"><b>Smokey Yuzu</b><span class="ch">柚</span></span><span class="price">RM 30</span><span class="ghost" aria-hidden="true">柚</span></li>
+  </ol>
+  <div class="foot">
+    <span class="handnote">Stronger? Add an extra 25ml shot — RM 8.</span>
+    <a class="btn btn-line" href="https://wa.me/60162541262?text=Hi%20Say.%20V!%20Can%20I%20book%20a%20table%20for%20tonight%3F" target="_blank" rel="noopener">Book tonight →</a>
+  </div>
+</section>
+
+<!-- ───────── FULL MENU ───────── -->
+<section class="menu" id="menu">
+  <div class="head rv">
+    <h2>The <em class="it">whole</em><br>menu.</h2>
+    <div class="meta"><div class="serif it">Mornings &amp; late nights</div><div class="eyebrow">Prices in RM</div></div>
+  </div>
+
+  <div class="tabs" role="tablist" aria-label="Menu categories">
+    <button class="tab" role="tab" aria-selected="true" data-f="all">Everything</button>
+    <button class="tab" role="tab" aria-selected="false" data-f="night">After dusk</button>
+    <button class="tab" role="tab" aria-selected="false" data-f="day">Before dusk</button>
+    <button class="tab" role="tab" aria-selected="false" data-f="food">To eat</button>
+  </div>
+
+  <div class="board" id="board"></div>
+  <p class="note">*Weekend specials as marked. Menu &amp; prices may change — message us to check what's pouring today.</p>
+</section>
+
+<!-- ───────── VISIT ───────── -->
+<section class="visit" id="visit">
+  <div class="grid">
+    <h2 class="rv">Come by.<em class="it">Stay a while.</em></h2>
+    <div class="card rv">
+      <dl>
+        <dt>Hours</dt><dd>Thu – Mon<br>8:30am – 1pm <span class="dim">coffee</span><br>6pm – 1am <span class="dim">bar</span><br><span class="dim">Closed Tue &amp; Wed</span></dd>
+        <dt>Where</dt><dd><a href="https://maps.app.goo.gl/iRiPcsPs8JaSjRaa6" target="_blank" rel="noopener">Say. V 西, Ipoh, Perak ↗</a></dd>
+        <dt>WhatsApp</dt><dd><a href="https://wa.me/60162541262?text=Hi%20Say.%20V!%20" target="_blank" rel="noopener">016-254 1262 ↗</a></dd>
+        <dt>Instagram</dt><dd><a href="https://www.instagram.com/say_v_cocktails/" target="_blank" rel="noopener">@say_v_cocktails</a></dd>
+        <dt>Facebook</dt><dd><a href="https://www.facebook.com/watch/?v=1065126299616233" target="_blank" rel="noopener">Watch us pour ↗</a></dd>
+      </dl>
+    </div>
+    <div class="ctas rv">
+      <a class="btn btn-ink" href="https://wa.me/60162541262?text=Hi%20Say.%20V!%20" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21c5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2Zm5.8 14.13c-.24.69-1.42 1.32-1.96 1.37-.5.05-1.13.07-1.82-.11-.42-.13-.96-.31-1.65-.61-2.9-1.25-4.79-4.17-4.94-4.36-.14-.19-1.18-1.57-1.18-3s.75-2.13 1.02-2.42c.27-.29.58-.36.78-.36h.56c.18 0 .42-.07.66.5.24.58.82 2 .89 2.15.07.14.12.31.02.5-.1.19-.14.31-.29.48-.14.17-.3.38-.43.51-.14.14-.29.3-.13.59.17.29.74 1.22 1.59 1.98 1.09.97 2.01 1.27 2.3 1.42.29.14.46.12.63-.07.17-.19.72-.84.92-1.13.19-.29.38-.24.65-.14.27.1 1.69.8 1.98.94.29.14.48.22.55.34.07.12.07.69-.17 1.37Z"/></svg>
+        Contact us on WhatsApp
+      </a>
+      <a class="btn btn-line" href="https://maps.app.goo.gl/iRiPcsPs8JaSjRaa6" target="_blank" rel="noopener">Get directions</a>
+      <a class="btn btn-line" href="https://www.instagram.com/say_v_cocktails/" target="_blank" rel="noopener">Follow on Instagram</a>
+    </div>
+  </div>
+  <div class="bigmark" aria-hidden="true">Say.V<span>西</span></div>
+</section>
+
+<footer>
+  <span>© 2026 Say. V 西 · Ipoh</span>
+  <span><a href="https://www.instagram.com/say_v_cocktails/" target="_blank" rel="noopener">Instagram</a> · <a href="https://www.facebook.com/watch/?v=1065126299616233" target="_blank" rel="noopener">Facebook</a> · <a href="https://wa.me/60162541262" target="_blank" rel="noopener">WhatsApp</a></span>
+  <span>Please drink responsibly. 18+ for alcohol.</span>
+</footer>
+
+<a class="wa-float" href="https://wa.me/60162541262?text=Hi%20Say.%20V!%20" target="_blank" rel="noopener" aria-label="Chat with Say. V on WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21c5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2Zm5.8 14.13c-.24.69-1.42 1.32-1.96 1.37-.5.05-1.13.07-1.82-.11-.42-.13-.96-.31-1.65-.61-2.9-1.25-4.79-4.17-4.94-4.36-.14-.19-1.18-1.57-1.18-3s.75-2.13 1.02-2.42c.27-.29.58-.36.78-.36h.56c.18 0 .42-.07.66.5.24.58.82 2 .89 2.15.07.14.12.31.02.5-.1.19-.14.31-.29.48-.14.17-.3.38-.43.51-.14.14-.29.3-.13.59.17.29.74 1.22 1.59 1.98 1.09.97 2.01 1.27 2.3 1.42.29.14.46.12.63-.07.17-.19.72-.84.92-1.13.19-.29.38-.24.65-.14.27.1 1.69.8 1.98.94.29.14.48.22.55.34.07.12.07.69-.17 1.37Z"/></svg>
+</a>
+
+<script>
+  const MENU = [
+    {k:"Signature", g:"night", n:"i.", aside:"after dusk", items:[
+      ["Fruits","RM 25","","果"],["Plum","RM 25","","梅"],["Tea","RM 28","","茶"],["Blossom","RM 25","","花"],
+      ["Lychee","RM 25","","荔"],["Star Fruit","RM 30","","桃"],["Nutmeg","RM 25","","葱"],["Smokey Yuzu","RM 30"],["Extra Shot 25ml","RM 8"]]},
+    {k:"Wines & Drinks", g:"night", n:"ii.", items:[
+      ["Homemade Rice Wine","RM 23"],["Gin & Tonic","RM 30"],["Tomato Beer","RM 28"],["Red American Lemonade","RM 28"],
+      ["Red Wine — glass","RM 28"],["Red Wine — bottle","RM 118"],["White Wine — glass","RM 28"],["White Wine — bottle","RM 118"]]},
+    {k:"Snacks", g:"night food", n:"iii.", items:[
+      ["Middle Chicken Wings","RM 20","Original / mala"],["Butter Garlic Clam","RM 25","With sourdough"],["Corn Ribs","RM 18"],
+      ["Jalapeño Poppers","RM 19"],["Dumplings","RM 22","With spicy sauce"],["Lemon Salt Edamame","RM 18"]]},
+    {k:"Coffee", g:"day", n:"iv.", items:[
+      ["Black","RM 8"],["White","RM 9"],["Espresso","RM 7"],["Vietnam Coffee","RM 8"],["Mocha","RM 10"],["Cinnamon Coffee","RM 12"],
+      ["Ice Cube Coffee","RM 15"],["Coconut Coffee","RM 13"],["Black Orange","RM 15"],["Sicily Coffee","RM 15"],["Black N White","RM 16"]]},
+    {k:"Slow Life", g:"day", n:"v.", aside:"the unhurried ones", items:[
+      ["Matcha Lime Lychee","RM 16"],["Matcha Lemongrass","RM 16"],["Matcha Coconut","RM 16","With chia seeds"],
+      ["Genmai Oatmilk Latte","RM 16"],["Tomato Fresh","RM 15"],["Lime Tea","RM 15"]]},
+    {k:"Non Coffee", g:"day", n:"vi.", items:[
+      ["Chocolate","RM 10"],["Fresh Milk","RM 7"],["Honey Milk","RM 8"],["Lemon Tea","RM 8"],["Peach Tea","RM 8"],
+      ["Honey","RM 7"],["Hojicha Latte","RM 13"],["Matcha Latte","RM 13"]]},
+    {k:"Plates & Bread", g:"day food", n:"vii.", items:[
+      ["Focaccia Bread","RM 23","Smoked ham, rocket, cream cheese, gherkin, balsamic"],
+      ["Focaccia Salmon","RM 23","Smoked salmon, cream cheese, rocket, mentai sauce"],
+      ["Ah Mo Breakfast","RM 26","Ham, bacon, sausage, hashbrown, sourdough, egg, baked beans"],
+      ["Sourdough with Butter Kaya","RM 10"],["Sourdough with Egg","RM 10"],["Nasi Lemak","RM 5"],["Mee Siam","RM 5"],
+      ["Yogurt Bowl","RM 19","Strawberry, blueberry, banana, granola, coconut flakes"]]},
+    {k:"Weekend Special", g:"day food", n:"viii.", aside:"while it lasts", items:[
+      ["Radish Bite","RM 12","Saturday only"],["Spinach Noodle","RM 16","Fri · Sat · Sun"]]},
+    {k:"Sweet Ending", g:"night day food", n:"ix.", items:[
+      ["Tiramisu","RM 21"],["Ice Cream Ball","RM 8"],["Coconut Affogato","RM 17","Coffee or matcha"]]},
+  ];
+  const esc = s => s.replace(/&/g,"&amp;").replace(/</g,"&lt;");
+  document.getElementById("board").innerHTML = MENU.map(c => `
+    <div class="cat" data-g="${c.g}">
+      <h4><small>${c.n}</small>${esc(c.k)}${c.aside ? `<span class="aside">${c.aside}</span>` : ""}</h4>
+      ${c.items.map(([n,p,d,ch]) => `
+        <div class="item"><span class="n">${esc(n)}${ch ? `<span class="ch">${ch}</span>` : ""}</span><span class="dots"></span><span class="p">${p}</span></div>
+        ${d ? `<p class="d">${esc(d)}</p>` : ""}`).join("")}
+    </div>`).join("");
+
+  document.querySelectorAll(".tab").forEach(t => t.addEventListener("click", () => {
+    document.querySelectorAll(".tab").forEach(x => x.setAttribute("aria-selected", x === t));
+    const f = t.dataset.f;
+    document.querySelectorAll(".cat").forEach(c => c.classList.toggle("hide", f !== "all" && !c.dataset.g.split(" ").includes(f)));
+  }));
+
+  // open/closed status in Malaysia time (UTC+8): Tue & Wed closed; 8:30–13:00 and 18:00–01:00
+  (() => {
+    const el = document.querySelector("[data-status]"); if (!el) return;
+    const my = new Date(Date.now() + (new Date().getTimezoneOffset() + 480) * 60000);
+    const d = my.getDay(), m = my.getHours() * 60 + my.getMinutes();
+    const openDay = x => x !== 2 && x !== 3;
+    let txt = "";
+    if (openDay(d) && m >= 510 && m < 780) txt = "Open now · coffee till 1pm";
+    else if (openDay(d) && m >= 1080) txt = "Open now · bar till 1am";
+    else if (m < 60 && openDay((d + 6) % 7)) txt = "Open now · bar till 1am";
+    if (txt) { el.textContent = txt; el.classList.add("open"); }
+    else if (openDay(d) && m < 510) el.textContent = "Closed · opens 8:30am";
+    else if (openDay(d) && m >= 780 && m < 1080) el.textContent = "Closed · bar opens 6pm";
+    else el.textContent = "Closed today · back Thursday 8:30am";
+  })();
+
+  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target);} }), {threshold:.15});
+  document.querySelectorAll(".rv").forEach((el,i) => { if (el.classList.contains("drink")) el.style.transitionDelay = (i % 8) * 60 + "ms"; io.observe(el); });
+</script>
+</body>
+</html>
